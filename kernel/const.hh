@@ -3,8 +3,19 @@
 
 #include <stdint.h>
 
-#define counted_by(counter) [[gnu::counted_by(counter)]]
 #define unreachable() __builtin_unreachable() // TODO assert
+#define counted_by(counter) [[gnu::counted_by(counter)]]
+
+#if defined(__GNUC__)
+#define IO_DIAG_PUSH _Pragma("GCC diagnostic push")
+#define IO_DIAG_IGNORE_DEPR                                                    \
+	_Pragma("GCC diagnostic ignored \"-Wdeprecated-declarations\"")
+#define IO_DIAG_POP _Pragma("GCC diagnostic pop")
+#else
+#define IO_DIAG_PUSH
+#define IO_DIAG_IGNORE_DEPR
+#define IO_DIAG_POP
+#endif
 
 namespace common {
 template <typename... Ts> constexpr void unused(Ts&&...) noexcept {}
