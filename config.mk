@@ -21,7 +21,7 @@ KERNEL_COMMON := \
     -target x86_64-elf -m64 -march=x86-64 \
     -mno-80387 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone \
     -ffreestanding -fno-omit-frame-pointer -nostdlib \
-    -I source -I . -I common -include const.hh -mcmodel=kernel -fno-pic
+    -I src -I . -I common -include const.hh -mcmodel=kernel -fno-pic
 
 KERNEL_CFLAGS   := $(CFLAGS)       $(KERNEL_COMMON) -fno-lto
 KERNEL_CXXFLAGS := $(CXXFLAGS)     $(KERNEL_COMMON) \
