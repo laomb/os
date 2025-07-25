@@ -1,13 +1,24 @@
 #ifndef CONST_H
 #define CONST_H
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #define counted_by(counter) [[gnu::counted_by(counter)]]
 
 #define unreachable() __builtin_unreachable()
 #define unused(x) ((void)x)
+
+#if defined(__GNUC__)
+#define IO_DIAG_PUSH _Pragma("GCC diagnostic push")
+#define IO_DIAG_IGNORE_DEPR                                                    \
+	_Pragma("GCC diagnostic ignored \"-Wdeprecated-declarations\"")
+#define IO_DIAG_POP _Pragma("GCC diagnostic pop")
+#else
+#define IO_DIAG_PUSH
+#define IO_DIAG_IGNORE_DEPR
+#define IO_DIAG_POP
+#endif
 
 typedef uint8_t u8;
 typedef int8_t i8;
