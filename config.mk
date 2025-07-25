@@ -8,7 +8,7 @@ OBJCOPY  := llvm-objcopy
 NM       := llvm-nm
 
 C_STD    := gnu23
-CXX_STD  := c++23
+CXX_STD  := gnu++23
 
 DEBUG_FLAGS   := -g -O2 -pipe -Wall -Wextra -Werror -pedantic
 RELEASE_FLAGS := -O3 -DNDEBUG
@@ -21,7 +21,7 @@ KERNEL_COMMON := \
     -target x86_64-elf -m64 -march=x86-64 \
     -mno-80387 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone \
     -ffreestanding -fno-omit-frame-pointer -nostdlib \
-    -I source -I . -I common -include const.hh -mcmodel=kernel -fno-pic
+    -I src -I . -I common -include const.hh -mcmodel=kernel -fno-pic
 
 KERNEL_CFLAGS   := $(CFLAGS)       $(KERNEL_COMMON) -fno-lto
 KERNEL_CXXFLAGS := $(CXXFLAGS)     $(KERNEL_COMMON) \
