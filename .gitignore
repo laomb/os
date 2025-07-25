@@ -3,3 +3,5 @@ build
 extern
 compile_commands.json
 .vscode
+.envrc
+env-bin/
