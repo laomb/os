@@ -8,7 +8,7 @@ OBJCOPY  := llvm-objcopy
 NM       := llvm-nm
 
 C_STD    := gnu23
-CXX_STD  := c++23
+CXX_STD  := gnu++23
 
 DEBUG_FLAGS   := -g -O2 -pipe -Wall -Wextra -Werror -pedantic
 RELEASE_FLAGS := -O3 -DNDEBUG
