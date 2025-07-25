@@ -1,10 +1,8 @@
 #include <sys/serial.hh>
 
-inline serial::Device com1{0x3f8};
-
 extern "C" [[noreturn]] void _start() {
-	serial::init(com1);
-	serial::write(reinterpret_cast<const u8*>("Hello, World!\n"), 15, com1);
+	serial::init(0x3F8);
+	serial::write(reinterpret_cast<const u8*>("Hello, World!\n"), 15, 0x3F8);
 	for (;;)
 		;
 }
