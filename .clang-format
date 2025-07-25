@@ -3,3 +3,4 @@ UseTab: Always
 IndentWidth: 4
 TabWidth: 4
 PointerAlignment: Left
+ColumnLimit: 100

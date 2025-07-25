@@ -8,8 +8,7 @@
 
 #if defined(__GNUC__)
 #define IO_DIAG_PUSH _Pragma("GCC diagnostic push")
-#define IO_DIAG_IGNORE_DEPR                                                    \
-	_Pragma("GCC diagnostic ignored \"-Wdeprecated-declarations\"")
+#define IO_DIAG_IGNORE_DEPR _Pragma("GCC diagnostic ignored \"-Wdeprecated-declarations\"")
 #define IO_DIAG_POP _Pragma("GCC diagnostic pop")
 #else
 #define IO_DIAG_PUSH
@@ -20,9 +19,7 @@
 namespace common {
 template <typename... Ts> constexpr void unused(Ts&&...) noexcept {}
 
-template <typename T> constexpr const T& min(const T& a, const T& b) {
-	return (b < a) ? b : a;
-}
+template <typename T> constexpr const T& min(const T& a, const T& b) { return (b < a) ? b : a; }
 } // namespace common
 
 using u8 = uint8_t;
