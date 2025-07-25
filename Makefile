@@ -1,5 +1,6 @@
 include config.mk
 
+EXTERN_DIR := $(abspath ./extern)
 LIMINE_DIR := $(EXTERN_DIR)/limine
 LIMINE_REPO := https://github.com/limine-bootloader/limine.git
 
