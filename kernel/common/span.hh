@@ -26,16 +26,14 @@ template <typename T> class span {
 	constexpr span() noexcept : m_data(nullptr), m_size(0) {}
 	constexpr span(decltype(nullptr)) noexcept : m_data(nullptr), m_size(0) {}
 
-	constexpr span(pointer ptr, m_sizetype count) noexcept
-		: m_data(ptr), m_size(count) {}
+	constexpr span(pointer ptr, m_sizetype count) noexcept : m_data(ptr), m_size(count) {}
 
 	constexpr span(pointer first, pointer last) noexcept
 		: m_data(first), m_size(static_cast<m_sizetype>(last - first)) {}
 
 	template <typename U>
 		requires ConvertibleTo<U*, T*>
-	constexpr span(const span<U>& other) noexcept
-		: m_data(other.data()), m_size(other.size()) {}
+	constexpr span(const span<U>& other) noexcept : m_data(other.data()), m_size(other.size()) {}
 
 	constexpr pointer data() noexcept { return m_data; }
 	constexpr const_pointer data() const noexcept { return m_data; }
@@ -43,12 +41,8 @@ template <typename T> class span {
 	constexpr m_sizetype size() const noexcept { return m_size; }
 	constexpr bool empty() const noexcept { return m_size == 0; }
 
-	constexpr reference operator[](m_sizetype idx) noexcept {
-		return m_data[idx];
-	}
-	constexpr const_reference operator[](m_sizetype idx) const noexcept {
-		return m_data[idx];
-	}
+	constexpr reference operator[](m_sizetype idx) noexcept { return m_data[idx]; }
+	constexpr const_reference operator[](m_sizetype idx) const noexcept { return m_data[idx]; }
 
 	constexpr reference at(m_sizetype idx) noexcept {
 		if (idx >= m_size)
@@ -65,9 +59,7 @@ template <typename T> class span {
 	constexpr const_reference front() const noexcept { return m_data[0]; }
 
 	constexpr reference back() noexcept { return m_data[m_size - 1]; }
-	constexpr const_reference back() const noexcept {
-		return m_data[m_size - 1];
-	}
+	constexpr const_reference back() const noexcept { return m_data[m_size - 1]; }
 
 	constexpr iterator begin() noexcept { return m_data; }
 	constexpr const_iterator begin() const noexcept { return m_data; }
@@ -111,13 +103,10 @@ template <typename T> class span {
 		return true;
 	}
 
-	friend constexpr bool operator!=(const span& a, const span& b) noexcept {
-		return !(a == b);
-	}
+	friend constexpr bool operator!=(const span& a, const span& b) noexcept { return !(a == b); }
 
 	constexpr const span<const u8> as_bytes() const noexcept {
-		return span<const u8>(reinterpret_cast<const u8*>(m_data),
-							  m_size * sizeof(T));
+		return span<const u8>(reinterpret_cast<const u8*>(m_data), m_size * sizeof(T));
 	}
 
 	constexpr span<u8> as_mut_bytes() noexcept {
